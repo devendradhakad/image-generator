@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "7.0.0",
+    "npm": "3.10.8"
+  },
   "scripts": {
-    "start": "node server.js",
+    "start": "./node_modules/webpack/bin/webpack.js -p --progress && node server.js",
     "build": "webpack --mode production",
     "webpack": "webpack",
     "dev": "webpack serve --open",
