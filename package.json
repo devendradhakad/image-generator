@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "webpack -p",
     "webpack": "webpack",
     "dev": "webpack serve --open",
     "publish": "git push --follow-tags && node scripts/ghPages.js",
