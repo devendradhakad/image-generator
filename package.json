@@ -3,13 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "7.0.0",
-    "npm": "3.10.8"
-  },
   "scripts": {
     "start": "./node_modules/webpack/bin/webpack.js -p --progress && node server.js",
-    "build": "webpack --mode production",
     "webpack": "webpack",
     "dev": "webpack serve --open",
     "publish": "git push --follow-tags && node scripts/ghPages.js",
@@ -27,7 +22,6 @@
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "antd": "^4.10.0",
     "crypto-js": "^4.0.0",
-    "express": "^4.17.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
