@@ -6,13 +6,16 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: false,
-    // port: 9000,
+    port: 9000,
   },
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
   },
   devtool: "source-map",
+  "presets": [
+    "react"
+ ],
   module: {
     rules: [
       {
