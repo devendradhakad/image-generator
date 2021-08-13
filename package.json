@@ -8,6 +8,7 @@
   "description": "",
   "main": "dist/main.js",
   "scripts": {
+    "start": "webpack serve dist",
     "webpack": "webpack",
     "build": "webpack",
     "dev": "webpack serve --open",
