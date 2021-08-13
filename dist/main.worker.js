@@ -1,123 +1,97 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
+/*!*************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??ruleSet[1].rules[1].use[1]!./node_modules/babel-loader/lib/index.js!./src/ImageWorker.worker.js ***!
+  \*************************************************************************************************************************************************/
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+}
 
-/***/ "./src/utils/prime.js":
-/*!****************************!*\
-  !*** ./src/utils/prime.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "isPrime": () => /* binding */ isPrime,
-/* harmony export */   "nthPrime": () => /* binding */ nthPrime
-/* harmony export */ });
-var isPrime = function isPrime(num) {
-  if (num <= 1) return true;
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
 
-  for (var i = 2; i < num; i += 1) {
-    if (num % i == 0) return false;
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
   }
 
-  return true;
-};
-var nthPrime = function nthPrime(n) {
-  var ans;
+  return arr2;
+}
 
-  for (var i = 1;; i += 1) {
-    if (isPrime(i) === true) {
-      ans = i;
-      n--;
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
     }
-
-    if (n === 0) return ans;
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
   }
+
+  return _arr;
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+onmessage = function onmessage(e) {
+  var _e$data = _slicedToArray(e.data, 4),
+      width = _e$data[0],
+      height = _e$data[1],
+      pixels = _e$data[2],
+      id = _e$data[3];
+
+  var counter = 1;
+
+  for (var r = 8; r <= 256; r += 8) {
+    for (var g = 8; g <= 256; g += 8) {
+      for (var b = 8; b <= 256; b += 8) {
+        var x = Math.floor(Math.random() * width);
+        var y = Math.floor(Math.random() * height);
+        var off = (y * id.width + x) * 4;
+        pixels[off] = r;
+        pixels[off + 1] = g;
+        pixels[off + 2] = b;
+        pixels[off + 3] = 255;
+
+        if (x > width / 2) {
+          pixels[off + 3] = 255 * (1 - x / 10);
+        }
+
+        console.log("R, G, B values for each pixel ".concat(counter), r, g, b, "\n");
+        counter += 1;
+      }
+    }
+  }
+
+  postMessage([pixels]);
 };
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js??ruleSet[1].rules[1].use[1]!./node_modules/babel-loader/lib/index.js!./src/prime.worker.js":
-/*!*******************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??ruleSet[1].rules[1].use[1]!./node_modules/babel-loader/lib/index.js!./src/prime.worker.js ***!
-  \*******************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils_prime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/prime */ "./src/utils/prime.js");
-
-
-onmessage = function onmessage(oEvent) {
-  console.log("::Start Prime Calculation from worker::");
-  var t0 = performance.now();
-  (0,_utils_prime__WEBPACK_IMPORTED_MODULE_0__.nthPrime)(40000);
-  var t1 = performance.now();
-  var diff = Math.round(t1 - t0);
-  console.log("::Stop Prime Calculation from worker::");
-  postMessage(diff);
-};
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-/******/ 	// startup
-/******/ 	// Load entry module
-/******/ 	__webpack_require__("./node_modules/babel-loader/lib/index.js??ruleSet[1].rules[1].use[1]!./node_modules/babel-loader/lib/index.js!./src/prime.worker.js");
-/******/ 	// This entry module used 'exports' so it can't be inlined
 /******/ })()
 ;
 //# sourceMappingURL=main.worker.js.map

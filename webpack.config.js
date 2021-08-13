@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   entry: path.join(__dirname, "index.js"),
-  mode: "production",
+  mode: "development",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     compress: false,
@@ -13,9 +13,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   devtool: "source-map",
-  "presets": [
-    "react"
- ],
   module: {
     rules: [
       {
